@@ -35,6 +35,6 @@ jobs:
     - run: nix develop --command bun install
     - run: "nix develop --command bun lint"
     - run: "nix develop --command bun run build"
-    - run: "nix develop --command nx affected -t deploy"
+    - run: "nix develop --command bun nx affected -t deploy"
       env:
         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
