@@ -26,7 +26,7 @@ jobs:
     - name: Get pnpm cache directory
       id: pnpm-store-dir
       shell: bash
-      run: echo "dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}
+      run: nix develop --command 'echo "dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}'
 
     - uses: actions/cache/restore@v4
       id: restore-cache
