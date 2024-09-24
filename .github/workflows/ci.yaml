@@ -13,9 +13,6 @@ jobs:
   ci:
     name: Ci
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
     steps:
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v25
@@ -23,22 +20,6 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - uses: DeterminateSystems/magic-nix-cache-action@v2
 
-    - name: Get pnpm cache directory
-      id: bun-store-dir
-      shell: bash
-      run: nix develop --command bash -c 'echo "dir=$(bun pm cache)" >> ${GITHUB_OUTPUT}'
-    - uses: actions/cache/restore@v4
-      id: restore-cache
-      with:
-        path: ${{ steps.bun-store-dir.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/bun.lockb') }}
-
     - run: nix develop --command bun install
     - run: "nix develop --command bun lint:ci"
     - run: nix develop --command bun run build
-
-
-    - uses: actions/cache/save@v4
-      with:
-        path: ${{ steps.pnpm-store-dir.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/bun.lockb') }}
