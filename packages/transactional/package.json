@@ -10,8 +10,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev": "email dev",
-    "lint": "biome ci ./**/*.{ts,js,tsx}"
+    "dev": "email dev"
   },
   "dependencies": {
     "@react-email/components": "0.0.25",

@@ -13,7 +13,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "lint": "biome ci ./**/*.{ts,js,tsx}"
+    "lint": "biome ci ./**/*.{ts,tsx}"
   },
   "dependencies": {
     "clsx": "^2.1.1"
