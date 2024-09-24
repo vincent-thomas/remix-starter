@@ -3,20 +3,31 @@
   "targetDefaults": {
     "build:docker": {
       "cache": false,
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "build": {
-      "outputs": ["{projectRoot}/build"],
+      "outputs": [
+        "{projectRoot}/build"
+      ],
       "cache": true
     },
     "lint": {
       "cache": true,
-      "inputs": ["{projectRoot}/src"]
+      "inputs": [
+        "{projectRoot}/src"
+      ]
     }
   },
   "defaultBase": "main",
   "namedInputs": {
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
-    "default": ["sharedGlobals"]
-  }
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ],
+    "default": [
+      "sharedGlobals"
+    ]
+  },
+  "nxCloudId": "66f325ceb88a4333f79fbb13"
 }
