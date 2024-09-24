@@ -22,19 +22,22 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixos-unstable
     - uses: DeterminateSystems/magic-nix-cache-action@v2
+
+    - name: Get pnpm cache directory
+      id: pnpm-store-dir
+      shell: bash
+      run: echo "dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}
+
     - uses: actions/cache/restore@v4
       id: restore-cache
       with:
+        path: ${{ steps.pnpm-store-dir.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
 
     - run: nix develop --command pnpm install
     - run: nix develop --command pnpm lint
     - run: nix develop --command pnpm build
 
-    - name: Get pnpm cache directory
-      id: pnpm-store-dir
-      shell: bash
-      run: echo "dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}
 
     - uses: actions/cache/save@v4
       id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
