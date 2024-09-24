@@ -24,24 +24,21 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@v2
 
     - name: Get pnpm cache directory
-      id: pnpm-store-dir
+      id: bun-store-dir
       shell: bash
-      run: nix develop --command bash -c 'echo "dir=$(pnpm store path)" >> ${GITHUB_OUTPUT}'
+      run: nix develop --command bash -c 'echo "dir=$(bun pm cache)" >> ${GITHUB_OUTPUT}'
     - uses: actions/cache/restore@v4
       id: restore-cache
       with:
-        path: ${{ steps.pnpm-store-dir.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+        path: ${{ steps.bun-store-dir.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/bun.lockb') }}
 
-    - run: nix develop --command pnpm install
-    - run: nix develop --command pnpm lint
-    - run: nix develop --command pnpm build
+    - run: nix develop --command bun install
+    - run: "nix develop --command bun lint:ci"
+    - run: nix develop --command bun run build
 
 
     - uses: actions/cache/save@v4
-      id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
       with:
         path: ${{ steps.pnpm-store-dir.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+        key: ${{ runner.os }}-node-${{ hashFiles('**/bun.lockb') }}
