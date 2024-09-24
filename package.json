@@ -17,6 +17,7 @@
     "turbo": "^2.1.2"
   },
   "devDependencies": {
+    "@nx/workspace": "^19.8.0",
     "nx": "19.8.0"
   }
 }

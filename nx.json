@@ -6,9 +6,7 @@
       "dependsOn": ["build"]
     },
     "build": {
-      "outputs": [
-        "{projectRoot}/build"
-      ],
+      "outputs": ["{projectRoot}/build"],
       "cache": true
     },
     "lint": {
@@ -17,5 +15,9 @@
     }
   },
   "defaultBase": "main",
-  "nxCloudId": "66f302196777644d8401dedf"
+  "nxCloudId": "66f302196777644d8401dedf",
+  "namedInputs": {
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/nx-test.yml"],
+    "default": ["sharedGlobals"]
+  }
 }
