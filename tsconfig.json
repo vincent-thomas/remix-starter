@@ -5,11 +5,12 @@
     "**/.server/**/*.ts",
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
+    "**/.client/**/*.tsx",
+    "./server"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["@remix-run/node", "vite/client"],
+    "types": ["@remix-run/node", "vite/client", "@types/node"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -19,6 +20,7 @@
     "target": "ES2022",
     "strict": true,
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
