@@ -27,6 +27,6 @@ startTransition(() => {
     <StrictMode>
       <RemixBrowser />
       <PosthogInit />
-    </StrictMode>
+    </StrictMode>,
   );
 });

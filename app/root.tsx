@@ -46,6 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: This is controlled manor
           dangerouslySetInnerHTML={{
             __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
           }}

@@ -62,6 +62,7 @@ const resources = [
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
+        title="nice icon"
         viewBox="0 0 20 20"
         fill="none"
         className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
@@ -80,6 +81,7 @@ const resources = [
     text: "Tutorial (30 min)",
     icon: (
       <svg
+        title="nice icon"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
@@ -104,6 +106,7 @@ const resources = [
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
+        title="nice icon"
         viewBox="0 0 20 20"
         fill="none"
         className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
@@ -124,6 +127,7 @@ const resources = [
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
+        title="nice icon"
         viewBox="0 0 24 20"
         fill="none"
         className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"

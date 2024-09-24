@@ -36,8 +36,11 @@
           default = pkgs.mkShell {
             # The Nix packages provided in the environment
             packages = with pkgs; [
+              bun
               nodejs_22
-              pnpm_9
+              biome
+
+              lefthook
             ];
           };
         }
