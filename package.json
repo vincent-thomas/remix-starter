@@ -8,9 +8,9 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "nx affected -t build",
+    "build": "nx run-many -t build",
     "dev": "bun run --filter '*' dev",
-    "lint": "nx affected -t lint"
+    "lint": "nx run-many -t lint"
   },
   "devDependencies": {
     "@nx/workspace": "^19.8.0",

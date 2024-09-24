@@ -2,4 +2,4 @@
 pre-push:
   commands:
     lint:
-      run: bun run lint
+      run: bun nx run-many -t lint
