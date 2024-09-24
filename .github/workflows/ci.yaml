@@ -2,8 +2,10 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -36,5 +38,6 @@ jobs:
     - run: "nix develop --command bun lint"
     - run: "nix develop --command bun run build"
     - run: "nix develop --command bun nx affected -t deploy"
+      if: github.ref_name == 'main'
       env:
         FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
