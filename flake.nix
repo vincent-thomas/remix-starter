@@ -41,7 +41,6 @@
               biome
 
               lefthook
-
               flyctl
             ];
           };
