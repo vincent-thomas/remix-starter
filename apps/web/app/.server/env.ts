@@ -7,6 +7,7 @@ export const env = createEnv({
     ...sharedEnvs,
 
     SESSION_SECRET: z.string().length(64),
+    STRIPE_SECRET_KEY: z.string(),
   },
 
   /**

@@ -28,6 +28,7 @@ export async function loader() {
   return json({
     ENV: {
       CLIENT_POSTHOG_KEY: z.string().parse(process.env.CLIENT_POSTHOG_KEY),
+      CLIENT_STRIPE_KEY: z.string().parse(process.env.CLIENT_STRIPE_KEY),
     },
   });
 }
