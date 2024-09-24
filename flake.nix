@@ -38,7 +38,6 @@
             packages = with pkgs; [
               nodejs_22
               pnpm_9
-              just
             ];
           };
         }
