@@ -28,8 +28,6 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - uses: DeterminateSystems/magic-nix-cache-action@v2
 
-    - run: nix develop --command bunx nx-cloud start-ci-run --distribute-on="2 linux-medium-js" --stop-agents-after="build"
-
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
       uses: nrwl/nx-set-shas@v4
 
