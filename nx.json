@@ -13,6 +13,12 @@
       ],
       "cache": true
     },
+    "deploy": {
+      "cache": false,
+      "dependsOn": [
+        "build:docker"
+      ]
+    },
     "lint": {
       "cache": true,
       "inputs": [

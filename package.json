@@ -7,7 +7,6 @@
     "packages/*",
     "apps/*"
   ],
-  "packageManager": "bun@1.1.29",
   "scripts": {
     "build": "nx affected -t build",
     "dev": "bun run --filter '*' dev",
@@ -15,6 +14,7 @@
   },
   "devDependencies": {
     "@nx/workspace": "^19.8.0",
-    "nx": "19.8.0"
+    "nx": "19.8.0",
+    "typescript": "^5.6.2"
   }
 }

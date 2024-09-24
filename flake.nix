@@ -38,6 +38,7 @@
             packages = with pkgs; [
               bun
               nodejs_22
+              pnpm_9
               biome
 
               lefthook

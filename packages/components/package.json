@@ -1,0 +1,21 @@
+{
+  "name": "@starter/components",
+  "module": "src/index.ts",
+  "main": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@vanilla-extract/css": "^1.15.5",
+    "@vanilla-extract/recipes": "^0.5.5",
+    "@vanilla-extract/vite-plugin": "^4.0.15"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "lint": "biome ci ./**/*.{ts,js,tsx}"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@starter/transactional",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
@@ -9,7 +9,8 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev": "email dev"
+    "dev": "email dev",
+    "lint": "biome ci ./**/*.{ts,js,tsx}"
   },
   "dependencies": {
     "@react-email/components": "0.0.25",
