@@ -3,15 +3,20 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "workspaces": ["packages/*","apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "packageManager": "bun@1.1.29",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint"
+    "build": "nx affected -t build",
+    "dev": "bun run --filter '*' dev",
+    "lint": "nx affected -t lint"
   },
   "dependencies": {
     "turbo": "^2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nx": "19.8.0"
+  }
 }

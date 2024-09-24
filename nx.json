@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build:docker": {
+      "cache": false,
+      "dependsOn": ["build"]
+    },
+    "build": {
+      "outputs": [
+        "{projectRoot}/build"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "cache": true,
+      "inputs": ["{projectRoot}/src"]
+    }
+  },
+  "defaultBase": "main",
+  "nxCloudId": "66f302196777644d8401dedf"
+}

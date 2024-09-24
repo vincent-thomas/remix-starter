@@ -1,10 +1,12 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
 
-import "./instrumentation.js";
+import "./instrumentation";
+
+import * as build from "../build/server/index.js";
 
 const remixHandler = createRequestHandler({
-  build: await import("../build/server/index.js"),
+  build,
 });
 
 const app = express();

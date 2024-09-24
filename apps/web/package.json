@@ -1,15 +1,15 @@
 {
   "name": "web-starter2",
   "private": true,
-  "sideEffects": false,
   "type": "module",
   "packageManager": "pnpm@9.10.0",
   "scripts": {
     "build": "remix vite:build",
+    "build:docker": "docker build -t web-starter .",
     "dev": "remix vite:dev",
-    "lint": "biome check ./**/*.{ts,js,tsx}",
-    "lint:ci": "biome ci ./**/*.{ts,js,tsx}",
-    "typecheck": "tsc"
+    "lint": "biome ci ./**/*.{ts,js,tsx}",
+    "typecheck": "tsc",
+    "deploy": "flyctl deploy --remote-only"
   },
   "workspaces": ["./packages/*"],
   "dependencies": {
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.8",
     "@remix-run/dev": "^2.12.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.6.1",
     "@types/react": "^18.2.20",
@@ -41,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "@vanilla-extract/vite-plugin": "^4.0.15",
+    "esbuild": "^0.24.0",
     "npm-run-all": "^4.1.5",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1",
