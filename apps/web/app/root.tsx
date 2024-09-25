@@ -25,6 +25,7 @@ export const links: LinksFunction = () => [
 ];
 
 export async function loader() {
+  console.log(process.env.DATABASE_URL);
   return json({
     ENV: {
       CLIENT_POSTHOG_KEY: z.string().parse(process.env.CLIENT_POSTHOG_KEY),

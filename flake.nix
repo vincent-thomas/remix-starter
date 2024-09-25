@@ -9,6 +9,7 @@
   # Flake outputs
   outputs =
     { nixpkgs, self }:
+
     let
       # Systems supported
       allSystems = [
@@ -24,7 +25,10 @@
         nixpkgs.lib.genAttrs allSystems (
           system:
           f {
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
           }
         );
     in
@@ -49,7 +53,11 @@
               biome
 
               lefthook
+              pulumi
+              pulumiPackages.pulumi-language-nodejs
+
               flyctl
+              terraform
             ];
           };
         }
