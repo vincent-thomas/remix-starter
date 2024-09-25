@@ -36,7 +36,7 @@ jobs:
         echo "HEAD: ${{ env.NX_HEAD }}"
 
     - run: nix develop --command bun install
-    - run: "nix develop --command bun nx affected -t lint build"
+    - run: "nix develop --command bun nx affected -t lint build e2e"
     - run: "nix develop --command bun nx affected -t deploy"
       if: github.ref_name == 'main'
       env:

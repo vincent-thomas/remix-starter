@@ -21,6 +21,11 @@
     },
     "lint": {
       "cache": false
+    },
+
+    "e2e": {
+      "cache": true,
+      "dependsOn": ["build"]
     }
   },
   "defaultBase": "main",
