@@ -6,6 +6,7 @@
     "build": "remix vite:build",
     "build:docker": "docker build -t web-starter .",
     "e2e": "start-server-and-test e2e:start http://localhost:3000 e2e:run",
+    "e2e:ci": "cypress run",
     "e2e:run": "cypress run",
     "e2e:start": "bun run ./build/server-bundle.js",
     "dev": "remix vite:dev",

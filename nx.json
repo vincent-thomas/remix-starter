@@ -23,6 +23,10 @@
       "cache": false
     },
 
+    "e2e:ci": {
+      "cache": true,
+      "dependsOn": ["build"]
+    },
     "e2e": {
       "cache": true,
       "dependsOn": ["build"]
