@@ -1,4 +1,4 @@
-FROM node:22-slim
+FROM oven/bun
 WORKDIR /app
 
 COPY ./public .
@@ -7,4 +7,4 @@ COPY ./build/client ./build/client
 
 EXPOSE 3000
 
-ENTRYPOINT [ "node", "server-bundle" ]
+ENTRYPOINT [ "bun", "server-bundle" ]

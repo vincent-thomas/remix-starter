@@ -22,10 +22,10 @@ export default defineConfig({
       moduleDirectories: ["node_modules"],
     }),
   ],
-  test: {},
-  build: {
-    rollupOptions: {
-      external: [],
-    },
+
+  server: {
+    port: 3000,
   },
+
+  test: {},
 });
