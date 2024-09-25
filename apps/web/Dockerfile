@@ -7,4 +7,4 @@ COPY ./build/client ./build/client
 
 EXPOSE 3000
 
-ENTRYPOINT [ "bun", "server-bundle" ]
+ENTRYPOINT [ "bun", "server-bundle.js" ]
