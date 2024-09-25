@@ -19,6 +19,12 @@
         "build:docker"
       ]
     },
+    "deploy:staging": {
+      "cache": false,
+      "dependsOn": [
+        "build:docker"
+      ]
+    },
     "lint": {
       "cache": false
     },

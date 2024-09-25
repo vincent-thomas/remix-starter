@@ -12,7 +12,8 @@
     "dev": "remix vite:dev",
     "lint": "biome ci ./**/*.{ts,js,tsx}",
     "typecheck": "tsc",
-    "deploy": "flyctl deploy --remote-only"
+    "deploy": "flyctl deploy --remote-only",
+    "deploy:staging": "flyctl deploy --remote-only --config ./fly.staging.toml"
   },
   "dependencies": {
     "@remix-run/express": "^2.12.1",
