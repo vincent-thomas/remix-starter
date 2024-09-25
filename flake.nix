@@ -34,11 +34,18 @@
         { pkgs }:
         {
           default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              gcc.cc.lib
+            ];
+            CYPRESS_INSTALL_BINARY = 0;
+            CYPRESS_RUN_BINARY = "${pkgs.cypress}/bin/Cypress";
+            LD_LIBRARY_PATH = "${pkgs.gcc.cc.lib}/lib/";
+
             # The Nix packages provided in the environment
             packages = with pkgs; [
               bun
-              nodejs_22
-              pnpm_9
+              # Some bug in cypress so we cant use nodejs_22
+              nodejs_20
               biome
 
               lefthook
