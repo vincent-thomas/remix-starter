@@ -9,4 +9,5 @@ build
 .nx/workspace-data
 **/*.auto.tfvars
 **/*.tfstate
+**/*.tfstate.backup
 **/.terraform

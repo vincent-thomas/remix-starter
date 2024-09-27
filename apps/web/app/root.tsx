@@ -10,6 +10,11 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 import "./root.css";
 import { z } from "zod";
+import { sharedEnvs } from "./shared/shared-env";
+import { cn } from "@starter/components";
+import { themeClass } from "@starter/components/src/theme.css";
+import { rootClassname } from "./root.css";
+import "./globals.css";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,26 +30,23 @@ export const links: LinksFunction = () => [
 ];
 
 export async function loader() {
-  console.log(process.env.DATABASE_URL);
   return json({
-    ENV: {
-      CLIENT_POSTHOG_KEY: z.string().parse(process.env.CLIENT_POSTHOG_KEY),
-      CLIENT_STRIPE_KEY: z.string().parse(process.env.CLIENT_STRIPE_KEY),
-    },
+    ENV: z.object(sharedEnvs).parse(process.env),
   });
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: any) {
   const data = useLoaderData<typeof loader>();
+
   return (
-    <html lang="en">
+    <html className={cn(themeClass)} lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={cn(rootClassname)}>
         {children}
         <ScrollRestoration />
         <script

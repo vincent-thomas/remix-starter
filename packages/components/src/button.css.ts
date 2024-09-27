@@ -1,11 +1,12 @@
 "use client";
 
-import { recipe, type RecipeVariants } from "@vanilla-extract/recipes";
+import { recipe } from "@vanilla-extract/recipes";
 import { colors } from "./theme.css";
 import { createVar, style } from "@vanilla-extract/css";
 
 export const pY = createVar();
 export const pX = createVar();
+export const fontSize = createVar();
 export const gap = createVar();
 
 export const buttonStyle = recipe({
@@ -17,10 +18,13 @@ export const buttonStyle = recipe({
     borderRadius: 6,
     fontWeight: 600,
     display: "flex",
+    textDecoration: "none",
 
     paddingInline: pX,
     paddingBlock: pY,
-    gap: gap,
+    gap,
+
+    fontSize,
 
     cursor: "pointer",
   }),
@@ -39,18 +43,24 @@ export const buttonStyle = recipe({
         vars: {
           [pY]: "0.2rem",
           [pX]: "0.45rem",
+
+          [fontSize]: "0.75rem",
         },
       }),
       md: style({
         vars: {
           [pX]: "1rem",
-          [pY]: "0.5rem",
+          [pY]: "0.7rem",
+
+          [fontSize]: "0.9rem",
         },
       }),
       lg: style({
         vars: {
           [pX]: "2rem",
           [pY]: "0.8rem",
+
+          [fontSize]: "1rem",
         },
       }),
     },

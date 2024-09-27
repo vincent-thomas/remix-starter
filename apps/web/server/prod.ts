@@ -4,9 +4,10 @@ import express from "express";
 import "./instrumentation";
 
 import * as build from "../build/server/index.js";
+import type { ServerBuild } from "@remix-run/node";
 
 const remixHandler = createRequestHandler({
-  build,
+  build: build as unknown as ServerBuild,
 });
 
 const app = express();

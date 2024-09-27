@@ -3,7 +3,7 @@ import { buttonStyle } from "./button.css";
 import type { FC, ReactNode } from "react";
 import { cn } from "./utils";
 
-type ButtonStyleProps = RecipeVariants<typeof buttonStyle>;
+type ButtonStyleProps = Exclude<RecipeVariants<typeof buttonStyle>, undefined>;
 
 type ButtonProps = ButtonStyleProps & {
   type: HTMLButtonElement["type"];

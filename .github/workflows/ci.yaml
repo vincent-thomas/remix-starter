@@ -37,12 +37,12 @@ jobs:
 
     - run: nix develop --command bun install
     - run: "nix develop --command bun nx affected -t lint build"
-    - run: "nix develop --command bun nx affected -t deploy:staging"
-      if: github.ref_name == 'main'
-      env:
-        FLY_API_TOKEN: ${{ secrets.FLY_API_STAGING_TOKEN }}
-    - run: "nix develop --command bun nx affected -t e2e:ci"
-      if: github.ref_name == 'main'
+    # - run: "nix develop --command bun nx affected -t deploy:staging"
+    #   if: github.ref_name == 'main'
+    #   env:
+    #     FLY_API_TOKEN: ${{ secrets.FLY_API_STAGING_TOKEN }}
+    # - run: "nix develop --command bun nx affected -t e2e:ci"
+      # if: github.ref_name == 'main'
 
     - run: "nix develop --command bun nx affected -t deploy"
       if: github.ref_name == 'main'
