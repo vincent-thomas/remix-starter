@@ -3,8 +3,11 @@ import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { buildFinal } from "./build";
+import Unimport from "unimport/unplugin";
+import { unpluginConfiguration } from "./unimport-configuration";
+
+import { flatRoutes } from "remix-flat-routes";
 
 export default defineConfig({
   plugins: [
@@ -16,12 +19,13 @@ export default defineConfig({
         unstable_singleFetch: true,
       },
       buildEnd: buildFinal,
+      ignoredRouteFiles: ["**/*"],
+      routes: async (defineRoutes) => flatRoutes("routes", defineRoutes),
     }),
     tsconfigPaths(),
     vanillaExtractPlugin(),
-    nodeResolve({
-      moduleDirectories: ["node_modules"],
-    }),
+
+    Unimport.vite(unpluginConfiguration),
   ],
 
   server: {

@@ -1,7 +1,9 @@
 import esbuild from "esbuild";
+import unimport from "unimport/unplugin";
+import { unpluginConfiguration } from "./unimport-configuration";
 
-export function buildFinal() {
-  esbuild.buildSync({
+export async function buildFinal() {
+  await esbuild.build({
     entryPoints: ["./server/prod.ts"],
     outfile: "./build/server-bundle.js",
     bundle: true,
@@ -9,5 +11,7 @@ export function buildFinal() {
     external: [],
     minify: true,
     sourcemap: false,
+
+    plugins: [unimport.esbuild(unpluginConfiguration)],
   });
 }

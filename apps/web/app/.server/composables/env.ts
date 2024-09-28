@@ -1,5 +1,5 @@
 import { createEnv } from "@t3-oss/env-core";
-import { sharedEnvs } from "../shared/shared-env";
+import { sharedEnvs } from "../../shared/shared-env";
 import { z } from "zod";
 
 export const env = createEnv({
@@ -10,6 +10,8 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: z.string(),
 
     NODE_ENV: z.string(),
+
+    DATABASE_URL: z.string().url(),
   },
 
   /**

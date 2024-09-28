@@ -33,12 +33,14 @@ export default function handleRequest(
         responseStatusCode,
         responseHeaders,
         remixContext,
+        loadContext,
       )
     : handleBrowserRequest(
         request,
         responseStatusCode,
         responseHeaders,
         remixContext,
+        loadContext,
       );
 }
 
@@ -47,6 +49,7 @@ function handleBotRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
+  loadContext: AppLoadContext,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
@@ -55,14 +58,20 @@ function handleBotRequest(
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
+        nonce={loadContext.cspNonce}
       />,
       {
+        nonce: loadContext.cspNonce,
         onAllReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
+          //responseHeaders.set(
+          //  "Content-Security-Policy",
+          //  `script-src 'nonce-${loadContext.cspNonce}'`,
+          //);
 
           resolve(
             new Response(stream, {
@@ -97,6 +106,7 @@ function handleBrowserRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
+  loadContext: AppLoadContext,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
@@ -105,14 +115,20 @@ function handleBrowserRequest(
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
+        nonce={loadContext.cspNonce}
       />,
       {
+        nonce: loadContext.cspNonce,
         onShellReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
+          //responseHeaders.set(
+          //  "Content-Security-Policy",
+          //  `script-src 'nonce-${loadContext.cspNonce}'`,
+          //);
 
           resolve(
             new Response(stream, {

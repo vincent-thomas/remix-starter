@@ -3,29 +3,20 @@ import type { ServerBuild } from "@remix-run/node";
 import express from "express";
 import { randomBytes } from "node:crypto";
 
-//import "./instrumentation";
-//
-//import * as build from "../build/server";
-//import type { ServerBuild } from "@remix-run/node";
 import { z } from "zod";
-//import { randomBytes } from "node:crypto";
 
 const MODE = z.string().parse(process.env.NODE_ENV);
 
-const IS_PROD = MODE === "production";
-
 const app = express();
 
-// Is prod
-require("./instrumentation");
-app.use(
-  "/assets",
-  express.static("build/client/assets", { immutable: true, maxAge: "1y" }),
+const viteDevServer = await import("vite").then((vite) =>
+  vite.createServer({
+    server: { middlewareMode: true },
+  }),
 );
-//
-// Everything else (like favicon.ico) is cached for an hour. You may want to be
-// more aggressive with this caching.
-app.use(express.static("build/client", { maxAge: "1h" }));
+
+// Is prod
+app.use(viteDevServer.middlewares);
 
 app.use((_, res, next) => {
   res.locals.cspNonce = randomBytes(16).toString("hex");
@@ -34,7 +25,9 @@ app.use((_, res, next) => {
 
 async function getBuild() {
   try {
-    const build = await import("../build/server/index.js");
+    const build = await viteDevServer.ssrLoadModule(
+      "virtual:remix/server-build",
+    );
 
     return { build: build as unknown as ServerBuild, error: null };
   } catch (error) {

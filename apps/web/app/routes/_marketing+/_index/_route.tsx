@@ -1,7 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Button, buttonStyle, cn, sprinkles } from "@starter/components";
+import { Button, cn, sprinkles } from "@starter/components";
 import * as styles from "./styles.css";
-import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,67 +9,9 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-function Navbar() {
-  return (
-    <header
-      className={cn(
-        sprinkles({
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingY: "xlarge",
-        }),
-      )}
-    >
-      <h1
-        style={{
-          fontSize: "1.4rem",
-        }}
-        className={sprinkles({
-          color: "textPrimary",
-        })}
-      >
-        VT's Remix template
-      </h1>
-      <div
-        className={cn(
-          sprinkles({
-            display: "flex",
-            gap: "medium",
-
-            alignItems: "center",
-          }),
-        )}
-      >
-        <Link
-          to="/email"
-          className={buttonStyle({
-            size: "md",
-            colors: "accent",
-            variant: "ghost",
-          })}
-        >
-          fdshjklfdsa
-        </Link>
-        <Link
-          to="/"
-          className={buttonStyle({
-            size: "lg",
-            colors: "accent",
-            variant: "filled",
-          })}
-        >
-          Login
-        </Link>
-      </div>
-    </header>
-  );
-}
-
 export default function Index() {
   return (
-    <main className={cn(styles.indexRoot)}>
-      <Navbar />
+    <>
       <div className={cn(styles.heroContainer)}>
         <div
           className={cn(
@@ -92,9 +33,7 @@ export default function Index() {
               styles.heroDescription,
               sprinkles({
                 color: "textPrimary",
-
                 fontWeight: "bold",
-
                 paddingTop: "xlarge",
               }),
             )}
@@ -115,6 +54,7 @@ export default function Index() {
           </div>
         </div>
       </div>
+
       <div
         style={{
           borderWidth: "1px",
@@ -147,6 +87,6 @@ export default function Index() {
         </h2>
         <p className="">fdsahjkfldsahjkflasd</p>
       </div>
-    </main>
+    </>
   );
 }
