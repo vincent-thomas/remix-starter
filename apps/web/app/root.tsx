@@ -10,7 +10,7 @@ import "./root.css";
 import { z } from "zod";
 import { sharedEnvs } from "./shared/shared-env";
 import { cn } from "@starter/components";
-import { themeClass } from "@starter/components/src/theme.css";
+import { themeClass } from "@starter/components/theme";
 import { rootClassname } from "./root.css";
 import globalsUrl from "./globals.css?url";
 import { Providers } from "./providers";

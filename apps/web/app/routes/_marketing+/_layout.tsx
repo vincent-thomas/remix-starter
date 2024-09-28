@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import * as styles from "./styles.css";
 import { PublicNavbar } from "app/shared/components/public-navbar";
 import { json, Outlet, useLoaderData } from "@remix-run/react";
-import { cn } from "@starter/components";
+import { cn, sprinkles } from "@starter/components";
 import { getUserSession } from "@backend/session";
 
 export const meta: MetaFunction = () => {
@@ -20,7 +20,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Index() {
   const data = useLoaderData<typeof loader>();
   return (
-    <main className={cn(styles.indexRoot)}>
+    <main
+      className={cn(
+        sprinkles({
+          paddingX: "large",
+        }),
+        styles.indexRoot,
+      )}
+    >
       <PublicNavbar isAuthed={data.isAuthed} />
       <Outlet />
     </main>

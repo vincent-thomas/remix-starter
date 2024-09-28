@@ -14,11 +14,14 @@ import { eq } from "drizzle-orm";
 import { verify } from "argon2";
 import { toast } from "sonner";
 import { parseWithZod } from "@conform-to/zod";
-import { useEffect, useRef, useState } from "react";
-import { randomUUID } from "node:crypto";
+import { useEffect } from "react";
+import { LoaderCircleIcon } from "lucide-react";
+
+import { rotateSpin } from "@starter/components/keyframes";
 
 export async function loader(args: LoaderFunctionArgs) {
-  console.log(await banUserSession(args.request, "/app"));
+  await banUserSession(args.request, "/app");
+
   return null;
 }
 
@@ -31,12 +34,6 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const dataSubmitted = parseWithZod(formData, {
     schema,
-  });
-
-  await new Promise((res) => {
-    setTimeout(() => {
-      res("");
-    }, 4000);
   });
 
   if (dataSubmitted.status !== "success") {
@@ -117,6 +114,7 @@ export default function Page() {
       <input type="email" name="email" />
       <input type="password" name="password" />
       <button type="submit" disabled={state.state !== "idle"}>
+        {state.state !== "idle" && <LoaderCircleIcon className={rotateSpin} />}
         {state.state === "submitting" ? "Submitting" : "Submit"}
       </button>
     </Form>

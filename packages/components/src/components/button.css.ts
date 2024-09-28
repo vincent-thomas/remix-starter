@@ -1,7 +1,7 @@
 "use client";
 
 import { recipe } from "@vanilla-extract/recipes";
-import { colors } from "./theme.css";
+import { colors } from "../theme/index.css";
 import { createVar, style } from "@vanilla-extract/css";
 
 export const pY = createVar();
