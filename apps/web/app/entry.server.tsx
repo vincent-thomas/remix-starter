@@ -12,6 +12,7 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import Sentry from "@sentry/remix";
+import { z } from "zod";
 
 const ABORT_DELAY = 5_000;
 
@@ -53,15 +54,17 @@ function handleBotRequest(
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
+
+    const nonce = z.string().parse(loadContext.cspNonce);
     const { pipe, abort } = renderToPipeableStream(
       <RemixServer
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
-        nonce={loadContext.cspNonce}
+        nonce={nonce}
       />,
       {
-        nonce: loadContext.cspNonce,
+        nonce,
         onAllReady() {
           shellRendered = true;
           const body = new PassThrough();
@@ -86,7 +89,7 @@ function handleBotRequest(
           reject(error);
         },
         onError(error: unknown) {
-          const errorCode = 500;
+          responseStatusCode = 500;
           // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.

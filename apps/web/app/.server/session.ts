@@ -8,7 +8,7 @@ const sessionCookie = createCookie("__session", {
   path: "/",
   sameSite: "lax",
   secrets: [env.SESSION_SECRET],
-  secure: true,
+  secure: env.NODE_ENV === "production",
 });
 
 export const createSessionCookie = sessionCookie.serialize;

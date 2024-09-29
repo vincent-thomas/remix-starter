@@ -32,6 +32,13 @@ app.use((_, res, next) => {
   next();
 });
 
+function getLoadContext() {
+  return {
+    cspNonce: randomBytes(16).toString("hex"),
+    serverBuild: getBuild(),
+  };
+}
+
 async function getBuild() {
   try {
     const build = await import("../build/server/index.js");

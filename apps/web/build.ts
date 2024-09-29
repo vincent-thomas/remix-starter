@@ -4,7 +4,7 @@ import { unpluginConfiguration } from "./unimport-configuration";
 
 export async function buildFinal() {
   await esbuild.build({
-    entryPoints: ["./server/prod.ts"],
+    entryPoints: ["./server/hono.ts"],
     outfile: "./build/server-bundle.js",
     bundle: true,
     platform: "node",

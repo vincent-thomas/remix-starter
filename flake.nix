@@ -51,6 +51,7 @@
               # Some bug in cypress so we cant use nodejs_22
               nodejs_20
               biome
+              nodePackages.wrangler
 
               lefthook
               pulumi
