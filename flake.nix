@@ -45,17 +45,18 @@
             CYPRESS_RUN_BINARY = "${pkgs.cypress}/bin/Cypress";
             LD_LIBRARY_PATH = "${pkgs.gcc.cc.lib}/lib/";
 
+            shellHook = ''
+              bun install
+            '';
+
             # The Nix packages provided in the environment
             packages = with pkgs; [
               bun
               # Some bug in cypress so we cant use nodejs_22
-              nodejs_20
+              nodejs_22
               biome
-              nodePackages.wrangler
 
               lefthook
-              pulumi
-              pulumiPackages.pulumi-language-nodejs
 
               flyctl
               terraform

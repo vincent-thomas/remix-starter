@@ -11,7 +11,7 @@ import { z } from "zod";
 import { userSessionTable, userTable } from "@backend/composables/db/schema";
 import { eq } from "drizzle-orm";
 
-import { verify } from "argon2";
+import { verify } from "@ts-rex/argon2";
 import { toast } from "sonner";
 import { parseWithZod } from "@conform-to/zod";
 import { useEffect } from "react";
@@ -48,7 +48,12 @@ export async function action({ request }: ActionFunctionArgs) {
     return { status: "error" as const, message: "Invalid credentials" };
   }
 
-  if (!(await verify(result[0].password, dataSubmitted.value.password))) {
+  const passwordsMatch = verify(
+    result[0].password,
+    dataSubmitted.value.password,
+  );
+
+  if (!passwordsMatch) {
     return { status: "error" as const, message: "Invalid credentials" };
   }
 

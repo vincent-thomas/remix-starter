@@ -3,7 +3,10 @@ import type { ServerBuild } from "@remix-run/node";
 import express from "express";
 import { randomBytes } from "node:crypto";
 
+import "./instrumentation";
+
 import { z } from "zod";
+import { helmetMiddleware } from "./shared";
 
 const MODE = z.string().parse(process.env.NODE_ENV);
 
@@ -36,6 +39,8 @@ async function getBuild() {
     return { error: error, build: null as unknown as ServerBuild };
   }
 }
+
+app.use(helmetMiddleware(MODE));
 
 const remixHandler = createRequestHandler({
   mode: MODE,

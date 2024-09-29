@@ -13,6 +13,7 @@ import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import Sentry from "@sentry/remix";
 import { z } from "zod";
+import { getDomainUrl } from "@backend/utils/misc";
 
 const ABORT_DELAY = 5_000;
 
@@ -71,10 +72,6 @@ function handleBotRequest(
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
-          //responseHeaders.set(
-          //  "Content-Security-Policy",
-          //  `script-src 'nonce-${loadContext.cspNonce}'`,
-          //);
 
           resolve(
             new Response(stream, {
@@ -111,6 +108,7 @@ function handleBrowserRequest(
   remixContext: EntryContext,
   loadContext: AppLoadContext,
 ) {
+  const nonce = z.string().parse(loadContext.cspNonce);
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
@@ -118,21 +116,16 @@ function handleBrowserRequest(
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
-        nonce={loadContext.cspNonce}
+        nonce={nonce}
       />,
       {
-        nonce: loadContext.cspNonce,
+        nonce,
         onShellReady() {
           shellRendered = true;
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
-          //responseHeaders.set(
-          //  "Content-Security-Policy",
-          //  `script-src 'nonce-${loadContext.cspNonce}'`,
-          //);
-
           resolve(
             new Response(stream, {
               headers: responseHeaders,
@@ -146,7 +139,7 @@ function handleBrowserRequest(
           reject(error);
         },
         onError(error: unknown) {
-          const errorCode = 500;
+          responseStatusCode = 500;
           // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.

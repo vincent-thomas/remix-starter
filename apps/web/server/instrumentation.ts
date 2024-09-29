@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/remix";
-
 import { env } from "../app/.server/composables/env";
 
 Sentry.init({

@@ -1,7 +1,8 @@
 import { userTable } from "@backend/composables/db/schema";
 import { stripeSdk } from "@backend/sdk/stripe";
-import { hash } from "argon2";
+import { hash } from "@ts-rex/argon2";
 import { eq } from "drizzle-orm";
+import { randomBytes } from "node:crypto";
 
 interface CreateUserInput {
   email: string;
@@ -35,7 +36,7 @@ export async function createUser(
     email: props.email,
   });
 
-  const password = await hash(props.password);
+  const password = hash(props.password);
 
   const user = await db
     .insert(userTable)
