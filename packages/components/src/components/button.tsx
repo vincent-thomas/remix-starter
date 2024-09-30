@@ -1,7 +1,7 @@
 import type { RecipeVariants } from "@vanilla-extract/recipes";
 import { buttonStyle } from "./button.css";
 import type { FC, ReactNode } from "react";
-import { cn } from "./utils";
+import { cn } from "../utils";
 
 type ButtonStyleProps = Exclude<RecipeVariants<typeof buttonStyle>, undefined>;
 

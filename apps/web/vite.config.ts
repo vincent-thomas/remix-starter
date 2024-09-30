@@ -1,15 +1,20 @@
 /// <reference types="vitest" />
-import { vitePlugin as remix } from "@remix-run/dev";
+import {
+  vitePlugin as remix,
+  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
+} from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import { buildFinal } from "./build";
 import Unimport from "unimport/unplugin";
 import { unpluginConfiguration } from "./unimport-configuration";
-
 import { flatRoutes } from "remix-flat-routes";
 
 export default defineConfig({
+  css: {
+    transformer: "lightningcss",
+  },
   plugins: [
     remix({
       future: {
@@ -19,13 +24,13 @@ export default defineConfig({
         unstable_singleFetch: true,
       },
       buildEnd: buildFinal,
-      ignoredRouteFiles: ["**/*"],
+      //ignoredRouteFiles: ["**/*"],
       routes: async (defineRoutes) => flatRoutes("routes", defineRoutes),
     }),
     tsconfigPaths(),
-    vanillaExtractPlugin(),
 
     Unimport.vite(unpluginConfiguration),
+    vanillaExtractPlugin(),
   ],
 
   server: {

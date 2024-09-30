@@ -1,0 +1,17 @@
+{
+  "name": "web-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e": "start-server-and-test e2e:start http://localhost:3000 e2e:run",
+    "e2e:ci": "cypress run",
+    "e2e:run": "cypress run",
+    "e2e:start": "bunx nx start web",
+    "lint": "biome ci ./**/*.{ts,js,tsx}"
+  },
+  "devDependencies": {
+    "cypress": "^13.14.2",
+   "npm-run-all2": "^5.0.0",
+    "start-server-and-test": "^2.0.8"
+  }
+}

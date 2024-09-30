@@ -1,4 +1,4 @@
-import { colors } from "@starter/components/src/theme.css";
+import { colors } from "@starter/components/theme";
 import { style } from "@vanilla-extract/css";
 
 export const indexRoot = style({

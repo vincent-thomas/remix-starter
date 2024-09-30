@@ -1,5 +1,5 @@
 import { defineProperties, createSprinkles } from "@vanilla-extract/sprinkles";
-import { colors as themeColors } from "../theme.css";
+import { colors as themeColors } from "../theme/index.css";
 
 const space = {
   none: 0,

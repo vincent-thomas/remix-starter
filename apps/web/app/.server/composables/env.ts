@@ -9,9 +9,10 @@ export const env = createEnv({
     SESSION_SECRET: z.string().length(64),
     STRIPE_SECRET_KEY: z.string(),
 
-    NODE_ENV: z.string(),
+    NODE_ENV: z.enum(["development", "production"]),
 
     DATABASE_URL: z.string().url(),
+    MAIN_BUCKET: z.string(),
   },
 
   /**

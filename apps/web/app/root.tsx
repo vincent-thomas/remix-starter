@@ -10,9 +10,8 @@ import "./root.css";
 import { z } from "zod";
 import { sharedEnvs } from "./shared/shared-env";
 import { cn } from "@starter/components";
-import { themeClass } from "@starter/components/src/theme.css";
+import { themeClass } from "@starter/components/theme";
 import { rootClassname } from "./root.css";
-import globalsUrl from "./globals.css?url";
 import { Providers } from "./providers";
 
 export async function loader({ context }: LoaderFunctionArgs) {
@@ -25,6 +24,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function Layout({ children }: any) {
   const data = useLoaderData<typeof loader>();
+  console.log(data.cspNonce);
 
   return (
     <html className={cn(themeClass)} lang="en">
@@ -47,7 +47,6 @@ export function Layout({ children }: any) {
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           nonce={data.cspNonce}
         />
-        <link rel="stylesheet" href={globalsUrl} nonce={data.cspNonce} />
       </head>
       <body className={cn(rootClassname)}>
         {children}

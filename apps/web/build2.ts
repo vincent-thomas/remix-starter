@@ -6,7 +6,7 @@ export async function buildFinal() {
   await esbuild.build({
     entryPoints: ["./server/prod.ts"],
     outfile: "./build/server-bundle.js",
-    bundle: true,
+    bundle: false,
     format: "esm",
     platform: "node",
     minify: false,
