@@ -52,7 +52,7 @@
     "@typescript-eslint/parser": "^8.0.0",
     "@vanilla-extract/vite-plugin": "^4.0.15",
     "cypress": "^13.14.2",
-    "drizzle-kit": "^0.24.2",
+    "drizzle-kit": "^0.26.0",
     "esbuild": "^0.24.0",
     "npm-run-all2": "^6.0.0",
     "remix-flat-routes": "^0.6.5",
